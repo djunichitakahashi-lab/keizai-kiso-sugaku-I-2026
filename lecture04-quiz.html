@@ -2410,7 +2410,8 @@ function showAtt() {
   if (attTimer) clearTimeout(attTimer);
   state.textContent = pw;
   btn.disabled = true; btn.textContent = '表示中…';
-  if (copyBtn) copyBtn.disabled = true;
+  // 表示中（10秒間）はコピー可能。表示が終わったら refreshAttUI() で disabled に戻る。
+  if (copyBtn) copyBtn.disabled = false;
   try { localStorage.setItem('att_shown_' + VER, '1'); } catch (e) {}
   attTimer = setTimeout(() => {
     refreshAttUI();
